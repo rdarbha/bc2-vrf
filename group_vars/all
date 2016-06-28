@@ -5,12 +5,12 @@ interfaces:
         asn: 65101
         vrf:
             RED:
+        fabric:
+            swp51:
+                vrf: "RED"
         neighbors:
             swp1:
                 address: "172.16.1.1/24"
-                vrf: "RED"
-        fabric:
-            swp51:
                 vrf: "RED"
     leaf02:
         loopback: "10.0.0.102/32"
