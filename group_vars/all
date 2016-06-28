@@ -1,0 +1,66 @@
+# networking
+interfaces:
+    leaf01:
+        loopback: "10.0.0.101/32"
+        asn: 65101
+        vrf:
+            RED:
+        neighbors:
+            swp1: "172.16.1.1/24"
+                vrf: "RED"
+        fabric:
+            swp51:
+                vrf: "RED"
+    leaf02:
+        loopback: "10.0.0.102/32"
+        asn: 65102
+        vrf:
+            BLUE:
+        neighbors:
+            swp1: "172.16.2.1/24"
+                vrf: "BLUE"
+        fabric:
+            swp51:
+                vrf: "BLUE"
+    leaf03:
+        loopback: "10.0.0.103/32"
+        asn: 65103
+        neighbors:
+            swp1: "172.16.3.1/24"
+                vrf: "RED"
+        fabric:
+            swp51:
+                vrf: "RED"
+    leaf04:
+        loopback: "10.0.0.104/32"
+        asn: 65104
+        neighbors:
+            swp1:
+                vrf: "BLUE"
+        fabric:
+            swp51:
+                vrf: "BLUE"
+    spine01:
+        loopback: "10.0.0.111/32"
+        asn: 65111
+        fabric:
+            swp1:
+                vrf: "RED"
+            swp2:
+                vrf: "BLUE"
+            swp3:
+                vrf: "RED"
+            swp4:
+                vrf: "BLUE"
+interface_specific:
+    leaf:
+        neighbors:
+            swp1:
+        fabric:
+            swp51
+    spine:
+        fabric:
+            swp1:
+            swp2:
+            swp3:
+            swp4:
