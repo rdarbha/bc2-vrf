@@ -1,3 +1,0 @@
-- name: config /etc/network/interfaces on leafs and spines
-  template: src=interfaces.j2 dest=/etc/network/interfaces
-  notify: reload networking
