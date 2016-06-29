@@ -29,8 +29,8 @@ iface eth0 inet dhcp
 # fabricvars["intvar"] = {{fabricvars[intvars]}}
 auto {{ intvars }}
 iface {{ intvars }}
-{% if intvars.vrf is defined %}
-  vrf {{ intvars.vrf }}
+{% if fabricvars[intvars]["vrf"] is defined %}
+  vrf {{ fabricvars[intvars]["vrf"] }}
 {% endif %}
 {% if intvars.address is defined %}
   address {{intvars.address}}
