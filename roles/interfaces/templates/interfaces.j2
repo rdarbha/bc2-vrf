@@ -23,17 +23,14 @@ iface eth0 inet dhcp
 
 {% if switchvars.fabric is defined %}
 {% set fabricvars = switchvars.fabric %}
-# fabricvars = {{ fabricvars }}
 {% for intvars in fabricvars %}
-# intvar = {{ intvars }}
-# fabricvars["intvar"] = {{fabricvars[intvars]}}
 auto {{ intvars }}
 iface {{ intvars }}
 {% if fabricvars[intvars]["vrf"] is defined %}
   vrf {{ fabricvars[intvars]["vrf"] }}
 {% endif %}
-{% if intvars.address is defined %}
-  address {{intvars.address}}
+{% if fabricvars[intvars]["address"] is defined %}
+  address {{ fabricvars[intvars]["address"]}}
 {% endif %}
 {% endfor %}
 {% endif %}
@@ -43,11 +40,11 @@ iface {{ intvars }}
 {% for intvars in neighborvars %}
 auto {{ intvars }}
 iface {{ intvars }}
-{% if intvars.vrf is defined %}
-  vrf {{intvars.vrf}}
+{% if neighborvars[intvars]["vrf"] is defined %}
+  vrf {{ neighborvars[intvars]["vrf"] }}
 {% endif %}
-{% if intvars.address is defined %}
-  address {{intvars.address}}
+{% if neighborvars[intvars]["address"] is defined %}
+  address {{ neighborvars[intvars]["address"] }}
 {% endif %}
 {% endfor %}
 {% endif %}
