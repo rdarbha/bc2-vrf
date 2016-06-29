@@ -16,7 +16,9 @@ interfaces:
                 vrf: "RED"
     leaf02:
         loopback: "10.0.0.102/32"
-        asn: 65102
+        bgp:
+            asn: "65102"
+            vrf: "BLUE"
         vrf:
             BLUE:
         neighbors:
@@ -28,7 +30,9 @@ interfaces:
                 vrf: "BLUE"
     leaf03:
         loopback: "10.0.0.103/32"
-        asn: 65103
+        bgp:
+            asn: "65103"
+            vrf: "RED"
         neighbors:
             swp1:
                 address: "172.16.3.1/24"
@@ -38,7 +42,9 @@ interfaces:
                 vrf: "RED"
     leaf04:
         loopback: "10.0.0.104/32"
-        asn: 65104
+        bgp:
+            asn: "65104"
+            vrf: "BLUE"
         neighbors:
             swp1:
                 vrf: "BLUE"

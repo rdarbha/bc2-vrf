@@ -1,6 +1,6 @@
 {% set switchvars = interfaces[ansible_hostname] %}
 
-router bgp {{ switchvars[bgp]["asn"] }} vrf {{ switchvars[bgp]["vrf"] }}
+router bgp {{ switchvars["bgp"]["asn"] }} vrf {{ switchvars["bgp"]["vrf"] }}
  bgp router-id {{ switchvars["loopback"] }}
  neighbor FABRIC peer-group
  neighbor FABRIC capability extended-nexthop

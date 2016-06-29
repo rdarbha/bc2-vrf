@@ -4,6 +4,7 @@
 # Created by Ansible
 
 # {{ switchvars }}
+# router bgp {{ switchvars["bgp"] }} vrf {{ switchvars["bgp"] }}
 
 {% if switchvars["vrf"] is defined %}
 {% for vrfvars in switchvars["vrf"] %}
