@@ -1,52 +1,54 @@
-{% set intvars = interfaces[ansible_hostname] %}
+{% set switchvars = interfaces[ansible_hostname] %}
 
 # /etc/network/interfaces template for switches ({{ansible_hostname}})
 # Created by Ansible
 
-# {{ intvars }}
+# {{ switchvars }}
 
-{% if intvars.vrf is defined %}
-{% for vrf in intvars.vrf %}
-auto {{vrf}}
-iface {{vrf}}
+{% if switchvars.vrf is defined %}
+{% for vrf in switchvars.vrf %}
+auto {{ vrf }}
+iface {{ vrf }}
   vrf-table auto
 {% endfor %}
 {% endif %}
 
 auto lo
 iface lo inet loopback
-  address {{ intvars.loopback }}
+  address {{ switchvars.loopback }}
 
 auto eth0
 iface eth0 inet dhcp
 
 
-{% if intvars.fabric is defined %}
-{% for iface in intvars.fabric %}
-auto {{ iface }}
-iface {{ iface }}
-# iface.vrf = {{iface['vrf']}}
-{% if iface.vrf is defined %}
-  vrf {{iface.vrf}}
+{% if switchvars.fabric is defined %}
+{% set fabricvars = switchvars.fabric %}
+{% for intvars in fabricvars %}
+auto {{ intvars }}
+iface {{ intvars }}
+{# # intvars.vrf = {{ intvars.vrf }} #}
+{% if intvars.vrf is defined %}
+  vrf {{intvars.vrf}}
 {% endif %}
-{# # iface.address = {{iface.address}} #}
-{% if iface.address is defined %}
-  address {{iface.address}}
+{# # intvars.address = {{intvars.address}} #}
+{% if intvars.address is defined %}
+  address {{intvars.address}}
 {% endif %}
 {% endfor %}
 {% endif %}
 
-{% if intvars.neighbors is defined %}
-{% for iface in intvars.neighbors %}
-auto {{ iface }}
-iface {{ iface }}
+{% if switchvars.neighbors is defined %}
+{% set neighborvars = switchvars.neighbors %}
+{% for intvars in neighborvars %}
+auto {{ intvars }}
+iface {{ intvars }}
 {# # iface.vrf = {{iface.vrf}} #}
-{% if iface.vrf is defined %}
-  vrf {{iface.vrf}}
+{% if intvars.vrf is defined %}
+  vrf {{intvars.vrf}}
 {% endif %}
 {# # iface.address = {{iface.address}} #}
-{% if iface.address is defined %}
-  address {{iface.address}}
+{% if intvars.address is defined %}
+  address {{intvars.address}}
 {% endif %}
 {% endfor %}
 {% endif %}
