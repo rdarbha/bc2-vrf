@@ -53,7 +53,9 @@ interfaces:
                 vrf: "BLUE"
     spine01:
         loopback: "10.0.0.111/32"
-        asn: 65111
+        vrf: ["RED", "BLUE"]
+        bgp:
+            asn: "65111"
         fabric:
             swp1:
                 vrf: "RED"

@@ -6,3 +6,11 @@
   roles:
     - interfaces
     - quagga
+
+- hosts: spines
+  user: cumulus
+  become: yes
+  become_method: sudo
+  roles:
+    - interfaces
+    - quagga
