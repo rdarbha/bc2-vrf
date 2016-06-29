@@ -5,10 +5,10 @@
 
 # {{ switchvars }}
 
-{% if switchvars.vrf is defined %}
-{% for vrf in switchvars.vrf %}
-auto {{ vrf }}
-iface {{ vrf }}
+{% if switchvars["vrf"] is defined %}
+{% for vrfvars in switchvars.vrf %}
+auto {{ vrfvars }}
+iface {{ vrfvars }}
   vrf-table auto
 {% endfor %}
 {% endif %}
@@ -26,9 +26,9 @@ iface eth0 inet dhcp
 {% for intvars in fabricvars %}
 auto {{ intvars }}
 iface {{ intvars }}
-{# # intvars.vrf = {{ intvars.vrf }} #}
+# intvars.vrf = {{ intvars.vrf }}
 {% if intvars.vrf is defined %}
-  vrf {{intvars.vrf}}
+  vrf {{ intvars.vrf }}
 {% endif %}
 {# # intvars.address = {{intvars.address}} #}
 {% if intvars.address is defined %}
