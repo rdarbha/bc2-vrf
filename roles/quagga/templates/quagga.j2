@@ -8,7 +8,7 @@ router bgp {{ switchvars["bgp"]["asn"] }} vrf {{ switchvars["bgp"]["vrf"] }}
 {% set fabricvars = switchvars.fabric %}
 {% for intvars in fabricvars %}
  neighbor {{ intvars }} interface v6only peer-group FABRIC
- neighbor {{ intvars }} remote-as {{ switchvars["asn"] }}
+ neighbor {{ intvars }} remote-as {{ switchvars["bgp"]["asn"] }}
 {% endfor %}
 {% endif %}
  !

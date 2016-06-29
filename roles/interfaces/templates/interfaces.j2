@@ -3,8 +3,8 @@
 # /etc/network/interfaces template for switches ({{ansible_hostname}})
 # Created by Ansible
 
-# {{ switchvars }}
-# router bgp {{ switchvars["bgp"]["asn"] }} vrf {{ switchvars["bgp"]["asn"] }}
+{# # {{ switchvars }} #}
+{# # router bgp {{ switchvars["bgp"]["asn"] }} vrf {{ switchvars["bgp"]["vrf"] }} #}
 
 {% if switchvars["vrf"] is defined %}
 {% for vrfvars in switchvars["vrf"] %}
