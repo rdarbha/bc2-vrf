@@ -6,7 +6,7 @@
 # {{ switchvars }}
 
 {% if switchvars["vrf"] is defined %}
-{% for vrfvars in switchvars.vrf %}
+{% for vrfvars in switchvars["vrf"] %}
 auto {{ vrfvars }}
 iface {{ vrfvars }}
   vrf-table auto
@@ -23,14 +23,13 @@ iface eth0 inet dhcp
 
 {% if switchvars.fabric is defined %}
 {% set fabricvars = switchvars.fabric %}
+# fabricvars
 {% for intvars in fabricvars %}
 auto {{ intvars }}
 iface {{ intvars }}
-# intvars.vrf = {{ intvars.vrf }}
 {% if intvars.vrf is defined %}
   vrf {{ intvars.vrf }}
 {% endif %}
-{# # intvars.address = {{intvars.address}} #}
 {% if intvars.address is defined %}
   address {{intvars.address}}
 {% endif %}
@@ -42,11 +41,9 @@ iface {{ intvars }}
 {% for intvars in neighborvars %}
 auto {{ intvars }}
 iface {{ intvars }}
-{# # iface.vrf = {{iface.vrf}} #}
 {% if intvars.vrf is defined %}
   vrf {{intvars.vrf}}
 {% endif %}
-{# # iface.address = {{iface.address}} #}
 {% if intvars.address is defined %}
   address {{intvars.address}}
 {% endif %}
