@@ -23,7 +23,7 @@ iface eth0 inet dhcp
 
 {% if switchvars.fabric is defined %}
 {% set fabricvars = switchvars.fabric %}
-# fabricvars
+# {{ fabricvars }}
 {% for intvars in fabricvars %}
 auto {{ intvars }}
 iface {{ intvars }}
