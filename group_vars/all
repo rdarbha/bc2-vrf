@@ -2,7 +2,9 @@
 interfaces:
     leaf01:
         loopback: "10.0.0.101/32"
-        asn: 65101
+        bgp:
+            asn: "65101"
+            vrf: "RED"
         vrf:
             RED:
         fabric:

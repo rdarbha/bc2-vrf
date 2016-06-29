@@ -1,0 +1,7 @@
+- name: config /etc/quagga/daemons
+  template: src=daemons.j2 dest=/etc/quagga/daemons
+  notify: restart quagga
+
+- name: config /etc/quagga/Quagga.conf
+  template: src=quagga.j2 dest=/etc/Quagga/Quagga.conf
+  notify: restart quagga

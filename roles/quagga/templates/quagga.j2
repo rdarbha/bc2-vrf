@@ -1,0 +1,21 @@
+{% set switchvars = interfaces[ansible_hostname] %}
+
+router bgp {{ switchvars[bgp]["asn"] }} vrf {{ switchvars[bgp]["vrf"] }}
+ bgp router-id {{ switchvars["loopback"] }}
+ neighbor FABRIC peer-group
+ neighbor FABRIC capability extended-nexthop
+{% if switchvars.fabric is defined %}
+{% set fabricvars = switchvars.fabric %}
+{% for intvars in fabricvars %}
+ neighbor {{ intvars }} interface v6only peer-group FABRIC
+ neighbor {{ intvars }} remote-as {{ switchvars["asn"] }}
+{% endfor %}
+{% endif %}
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor FABRIC activate
+ exit-address-family
+!
+ip forwarding
+ipv6 forwarding
