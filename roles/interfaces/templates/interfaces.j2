@@ -3,6 +3,8 @@
 # /etc/network/interfaces template for switches ({{ansible_hostname}})
 # Created by Ansible
 
+# {{ intvars }}
+
 {% if intvars.vrf is defined %}
 {% for vrf in intvars.vrf %}
 auto {{vrf}}
