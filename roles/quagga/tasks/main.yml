@@ -3,5 +3,5 @@
   notify: restart quagga
 
 - name: config /etc/quagga/Quagga.conf
-  template: src=quagga.j2 dest=/etc/Quagga/Quagga.conf
+  template: src=quagga.j2 dest=/etc/quagga/Quagga.conf
   notify: restart quagga
