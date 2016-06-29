@@ -23,9 +23,11 @@ iface eth0 inet dhcp
 {% for iface in intvars.fabric %}
 auto {{ iface }}
 iface {{ iface }}
+# iface.vrf = {{iface.vrf}}
 {% if iface.vrf is defined %}
   vrf {{iface.vrf}}
 {% endif %}
+# iface.address = {{iface.address}}
 {% if iface.address is defined %}
   address {{iface.address}}
 {% endif %}
@@ -36,9 +38,11 @@ iface {{ iface }}
 {% for iface in intvars.neighbors %}
 auto {{ iface }}
 iface {{ iface }}
+# iface.vrf = {{iface.vrf}}
 {% if iface.vrf is defined %}
   vrf {{iface.vrf}}
 {% endif %}
+# iface.address = {{iface.address}}
 {% if iface.address is defined %}
   address {{iface.address}}
 {% endif %}
